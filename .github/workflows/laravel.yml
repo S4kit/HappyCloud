@@ -42,13 +42,6 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 HappyCloud/storage HappyCloud/bootstrap/cache
 
-    - name: Create Database
-      run: |
-        mkdir -p HappyCloud/database
-        touch HappyCloud/database/database.sqlite
-
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: HappyCloud/database/database.sqlite
+      
       run: php HappyCloud/artisan test
