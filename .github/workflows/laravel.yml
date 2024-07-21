@@ -27,14 +27,11 @@ jobs:
     - name: Show Composer Version
       run: composer -V
 
-    - name: Increase Memory Limit
-      run: echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
     - name: Install Dependencies (Verbose for Debugging)
-      run: composer install -vvv --no-interaction --prefer-dist
+      run: composer install --no-interaction --prefer-dist
 
     - name: Install Dependencies (Silent)
       if: failure()
