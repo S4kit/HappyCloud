@@ -16,7 +16,7 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test
+          MYSQL_DATABASE: laravel
         ports:
           - 3306:3306
         options: >-
@@ -58,18 +58,26 @@ jobs:
         sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=mysql/' HappyCloud/.env
         sed -i 's/DB_HOST=.*/DB_HOST=127.0.0.1/' HappyCloud/.env
         sed -i 's/DB_PORT=.*/DB_PORT=3306/' HappyCloud/.env
-        sed -i 's/DB_DATABASE=.*/DB_DATABASE=test/' HappyCloud/.env
+        sed -i 's/DB_DATABASE=.*/DB_DATABASE=laravel/' HappyCloud/.env
         sed -i 's/DB_USERNAME=.*/DB_USERNAME=root/' HappyCloud/.env
         sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=password/' HappyCloud/.env
 
     - name: Run migrations
+      env:
+        DB_CONNECTION: mysql
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_DATABASE: laravel
+        DB_USERNAME: root
+        DB_PASSWORD: password
       run: php HappyCloud/artisan migrate --force
 
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       env:
         DB_CONNECTION: mysql
-        DB_DATABASE: test
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_DATABASE: laravel
         DB_USERNAME: root
         DB_PASSWORD: password
-        DB_HOST: 127.0.0.1
       run: php HappyCloud/artisan test
