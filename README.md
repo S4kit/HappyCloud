@@ -1,13 +1,23 @@
 Hello, this is happyCloud! where your files are safe 
+
+
 	## https://github.com/S4kit/HappyCloud
+
+ 
 To use this application follow my instructions.
 
 **Suggested Requirements**
+
+
 PHP >= 8.2
 Laravel >= 11.X
 NPM & Node.js
 
+
+
 **Installing depandencies**
+
+
 I- Laravel Installlation
 
 1. go to the folder (cd HappyCloud)
