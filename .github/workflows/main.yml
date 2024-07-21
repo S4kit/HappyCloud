@@ -62,9 +62,6 @@ jobs:
         sed -i 's/DB_USERNAME=.*/DB_USERNAME=root/' HappyCloud/.env
         sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=password/' HappyCloud/.env
 
-    - name: Run migrations
-      run: php HappyCloud/artisan migrate --force
-
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       env:
         DB_CONNECTION: mysql
