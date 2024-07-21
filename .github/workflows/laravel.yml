@@ -27,20 +27,16 @@ jobs:
     - name: Show Composer Version
       run: composer -V
 
-    - name: Increase Memory Limit
-      run: echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-
     - name: Verify composer.json presence
       run: ls -la ${{ github.workspace }}/HappyCloud
 
     - name: Copy .env
       run: php -r "file_exists('HappyCloud/.env') || copy('HappyCloud/.env.example', 'HappyCloud/.env');"
 
-    - name: Install Dependencies (Verbose for Debugging)
-      run: composer install -vvv --working-dir=HappyCloud --no-interaction --prefer-dist
+    - name: Update Dependencies
+      run: composer update -vvv --working-dir=HappyCloud --no-interaction --prefer-dist
 
-    - name: Install Dependencies (Silent)
-      if: failure()
+    - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --working-dir=HappyCloud
 
     - name: Generate key
