@@ -27,9 +27,6 @@ jobs:
     - name: Show Composer Version
       run: composer -V
 
-    - name: Increase Memory Limit
-      run: echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-
     - name: Verify composer.json presence
       run: ls -la ${{ github.workspace }}/HappyCloud
 
