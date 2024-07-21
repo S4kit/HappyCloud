@@ -29,10 +29,14 @@ jobs:
     - uses: shivammathur/setup-php@v2
       with:
         php-version: '8.0'
+    - name: Check PHP Version
+      run: php --version
+    - name: Install PHP Extensions
+      run: sudo apt-get install -y php-mysql php-xml php-mbstring
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate Key
       run: php artisan key:generate
     - name: Set Directory Permissions
